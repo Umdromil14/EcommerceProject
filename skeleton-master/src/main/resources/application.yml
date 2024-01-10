@@ -4,6 +4,6 @@ server:
     contextPath: /skeleton-master
 spring:
   datasource:
-    password: Cyr14061406
-    url : jdbc:mysql://localhost:3306/siteecommerce?user=root
+    password: 'yourPassword'
+    url : jdbc:mysql://localhost:3306/'yourSQLServer'?user='yourSqlServerUsername'
     driverClassName: com.mysql.cj.jdbc.Driver
