@@ -13,8 +13,8 @@ import java.util.Locale;
 @Service
 public class CategoriesTranslationDAO implements CategoriesTranslationDataAccess {
 
-    private CategoriesTranslationRepository categoriesRepository;
-    private ProviderConverter providerConverter;
+    private final CategoriesTranslationRepository categoriesRepository;
+    private final ProviderConverter providerConverter;
 
     @Autowired
     public CategoriesTranslationDAO(CategoriesTranslationRepository categoriesRepository, ProviderConverter providerConverter){

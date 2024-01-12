@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDAO implements UserDataAccess{
 
-    private UserRepository userRepository;
-    private ProviderConverter providerConverter;
+    private final UserRepository userRepository;
+    private final ProviderConverter providerConverter;
 
     @Autowired
     public UserDAO(UserRepository userRepository, ProviderConverter providerConverter){
@@ -31,13 +31,12 @@ public class UserDAO implements UserDataAccess{
 
     @Override
     public boolean usernameExists(String username) {
-        UserEntity userEntity = userRepository.findByUsername(username);
-        return  userEntity != null;
+        return  userRepository.findByUsername(username) != null;
     }
 
     @Override
-    public void updateUser(int id, String username, String lastname, String firstname, String address, String email) {
-        userRepository.updateUser(id, username, lastname, firstname, address, email);
+    public void updateUser(String oldUsername, String username, String lastname, String firstname, String address, String email) {
+        userRepository.updateUser(oldUsername, username, lastname, firstname, address, email);
     }
 
     @Override

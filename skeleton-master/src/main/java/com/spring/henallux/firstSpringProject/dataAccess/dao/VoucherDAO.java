@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class VoucherDAO implements VoucherDataAccess {
 
-    private VoucherRepository voucherRepository;
-    private ProviderConverter providerConverter;
+    private final VoucherRepository voucherRepository;
+    private final ProviderConverter providerConverter;
 
     @Autowired
     public VoucherDAO(VoucherRepository voucherRepository, ProviderConverter providerConverter){

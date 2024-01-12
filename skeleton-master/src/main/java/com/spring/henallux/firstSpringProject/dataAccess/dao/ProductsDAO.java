@@ -12,8 +12,8 @@ import java.util.ArrayList;
 @Service
 public class ProductsDAO implements ProductsDataAccess{
 
-    private ProductRepository productsRepository;
-    private ProviderConverter providerConverter;
+    private final ProductRepository productsRepository;
+    private final ProviderConverter providerConverter;
 
     @Autowired
     public ProductsDAO(ProductRepository productsRepository, ProviderConverter providerConverter){
