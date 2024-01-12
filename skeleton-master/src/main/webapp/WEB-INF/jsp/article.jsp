@@ -17,7 +17,7 @@
                     <h5 class="card-title">${product.description}</h5>
                     <p class="card-text"><small class="text-body-secondary">${product.price} <spring:message code="currency"/></small></p>
                     <span>
-                        <form:form action="/skeleton-master/article/${id}/add" modelAttribute="quantityPurchased" method="POST">
+                        <form:form action="/produx/article/${id}/add" modelAttribute="quantityPurchased" method="POST">
                             <form:label path="quantity"><spring:message code="quantityLabel"/> : </form:label>
                             <form:input path="quantity" min="1" max="${max}" value="1" type="number" disabled="${basketFull}"/>
                             <form:button disabled="${basketFull}"><spring:message code="addToBasketButton"/></form:button>

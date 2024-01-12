@@ -15,7 +15,7 @@
             </c:if>
             <div class="card border-0 shadow">
                 <div class="card-body">
-                    <form:form id="userForm" method="POST" action="/skeleton-master/signup" modelAttribute="user">
+                    <form:form id="userForm" method="POST" action="/produx/signup" modelAttribute="user">
                         <h1 class="fw-bold text-center">
                             <spring:message code="signUp"/>
                         </h1>

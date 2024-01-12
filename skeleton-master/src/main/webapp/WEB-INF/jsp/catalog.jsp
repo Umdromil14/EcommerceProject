@@ -21,7 +21,7 @@
               </a>
             </p>
             <span>
-              <form:form action="/skeleton-master/catalog/${category}/add/${article.ID}" modelAttribute="quantityPurchased" method="POST">
+              <form:form action="/produx/catalog/${category}/add/${article.ID}" modelAttribute="quantityPurchased" method="POST">
                 <form:label path="quantity"><spring:message code="quantityLabel"/> :</form:label>
                 <form:input path="quantity" min="1" max="${max}" value="1" type="number" disabled="${basketFull}"/>
                 <form:button disabled="${basketFull}"><spring:message code="addToBasketButton"/></form:button>

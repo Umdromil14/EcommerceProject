@@ -28,14 +28,14 @@
                                             <spring:message code="totalPrice"/> : ${purchase.key.getPrice() * purchase.value} <spring:message code="currency"/>
                                         </p>
                                     </div>
-                                    <form:form modelAttribute="updateArticle" action="/skeleton-master/basket/update/${purchase.key.getID()}" method="POST">
+                                    <form:form modelAttribute="updateArticle" action="/produx/basket/update/${purchase.key.getID()}" method="POST">
                                         <form:input path="quantity" type="number" min="0" max="${purchase.value + max}" value="${purchase.value}" />
                                         <form:button><spring:message code="updateDeletePrice"/></form:button>
                                     </form:form>
                                 </div>
                             </div>
                         </c:forEach>
-                        <form:form modelAttribute="voucher" action="/skeleton-master/basket/addVoucher" method="POST">
+                        <form:form modelAttribute="voucher" action="/produx/basket/addVoucher" method="POST">
                             <spring:message code="voucherCode" var="voucherPlaceHolder" />
                             <form:input path="code" type="text" placeholder='${voucherPlaceHolder}'/>
                             <form:errors path="code" cssClass="error" />
@@ -61,8 +61,8 @@
                                 <input type="hidden" name="cmd" value="_xclick"/>
                                 <input type="hidden" name="amount" value="${totalPayment !=null ? totalPayment : totalPaymentWithoutVoucher}"/>
                                 <input type="hidden" name="currency_code" value="EUR"/>
-                                <input type="hidden" name="return" value="http://localhost:8082/skeleton-master/basket/success"/>
-                                <input type="hidden" name="cancel_return" value="http://localhost:8082/skeleton-master/basket/failure"/>
+                                <input type="hidden" name="return" value="http://localhost:8082/produx/basket/success"/>
+                                <input type="hidden" name="cancel_return" value="http://localhost:8082/produx/basket/failure"/>
                                 <input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="gif"/>
                             </form>
                         </sec:authorize>

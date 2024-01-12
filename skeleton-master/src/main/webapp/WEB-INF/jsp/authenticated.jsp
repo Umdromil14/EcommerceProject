@@ -12,7 +12,7 @@
                     <form:form
                             id="form"
                             method="POST"
-                            action="/skeleton-master/authenticated"
+                            action="/produx/authenticated"
                             modelAttribute="user"
                     >
                         <h1 class="fw-bold text-center">
