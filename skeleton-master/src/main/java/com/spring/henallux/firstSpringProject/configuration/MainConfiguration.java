@@ -1,7 +1,9 @@
 package com.spring.henallux.firstSpringProject.configuration;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.DefaultMessageCodesResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,7 +15,8 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import java.util.Locale;
 
 
-
+@EnableTransactionManagement
+@SpringBootApplication
 @Configuration
 public class MainConfiguration implements WebMvcConfigurer {
 
