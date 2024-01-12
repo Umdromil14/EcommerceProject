@@ -32,11 +32,11 @@ CREATE TABLE `USER` (
 
 CREATE TABLE `ORDER` (
     ID INT NOT NULL auto_increment,
-    UserID INT NOT NULL,
+    Username VARCHAR(255) NOT NULL,
     `Date` DATE NOT NULL default (current_date),
     isPayed BOOLEAN NOT NULL default false,
     primary key (ID),
-    foreign key (UserID) references USER(ID)
+    foreign key (Username) references USER(Username)
 ) charset = UTF8MB4, engine = InnoDB;
 
 CREATE TABLE `LANGUAGE` (
@@ -80,7 +80,7 @@ CREATE TABLE VOUCHER (
     foreign key (CodeCategory) references CATEGORY (Code)
 ) charset = UTF8MB4, engine = InnoDB;
 
-CREATE TABLE TRANSACTION_DETAILS (
+CREATE TABLE TRANSACTION_DETAIL (
     ID INT NOT NULL auto_increment,
     Quantity INT NOT NULL check (quantity > 0),
     TransactionPrice decimal(10, 2) NOT NULL check (TransactionPrice > 0.0),
@@ -101,18 +101,18 @@ CREATE TABLE REDUCTION(
 
 INSERT INTO `USER` (Username,Lastname, Firstname, IsEmployee, RegistrationDate, Password, Address, Email,PhoneNumber, Authorities, NonExpired, NonLocked, CredentialsNonExpired,IsEnabled)
 VALUES 
-('Umdromil','Baras', 'Cyril', true, DEFAULT, '$2a$10$P8mjs2.O4m5b4Kag3RrJreaFc0TLqw9PSKR07v6/ofdwyYvZ5gnaq', 'Rue de la motte 35, 1390 Grez-Doiceau', 'satisfactory.not@finished.be' ,'0485410020','ROLE_ADMIN', true, true, true,true), --Password
-('SkyVeo','Therasse', 'Nathan', true, DEFAULT, '$2a$10$4qrKEXYdN3f1isst80Rwhea5iRv2py.zZ3wS2Ck0elkmIpM/Qpq1m', 'Rue d''Elden Ring, 150 Tarnished', 'malenia.ez@norage.com','0470065616','ROLE_ADMIN', true, true, true,true),--Bidondon
-('CptnRam','Marton', 'Cédric', true, DEFAULT, '$2a$10$ZLXHXmROfgAFUvYINHPTKuL88pXgxL5M8NR3SOVyh07A8tQ6S2TkS', 'Rue The Finals, 5020 Champion', 'the.finals.are.back.baby@finals.steam','0470365845','ROLE_ADMIN', true, true, true,true),--GrosBidou
-('Mov','Maque', 'Margaux', false, DEFAULT,'$2a$10$VvevVCBdx8Eq5BOTgajAtuFNs5r1qMbOSuHw1tqyORxDeb8vZOSpa', 'Rue de la médecine, 1140 Evere', 'je.disseque@cadavre.be','0468306958','ROLE_USER', true, true, true,true),--cadavre ou Cadavre
-('Garou','Glesner', 'Marguerite',false,DEFAULT,'$2a$10$W3jo5moTQgHJ36ufJsg32uZxAi5JTfBZiQRIoa9usKIzAvU1jsoo.','Rue de la copine à Cédric, 5020 Champion', 'a.test.fortnite@pas.ouf','0465359858','ROLE_USER', true, true, true,true),--LoveCat
-('Anywhere','Still', 'Searching', true, DEFAULT,'$2a$10$QKW7Tzr/eEufubQlZekgRu0TjYDsMDF7YeoW5w5hdayBdbGx3z9HO','Rue de l''hésisation, 404 Unknown', 'find.soon@please.be','0000000000','ROLE_USER', true, true, true,true);--Where
+('Umdromil','Baras', 'Cyril', true, DEFAULT, '$2a$10$P8mjs2.O4m5b4Kag3RrJreaFc0TLqw9PSKR07v6/ofdwyYvZ5gnaq', 'Rue de la motte 35, 1390 Grez-Doiceau', 'satisfactory.not@finished.be' ,'0485410020','ROLE_ADMIN', true, true, true,true), -- Password
+('SkyVeo','Therasse', 'Nathan', true, DEFAULT, '$2a$10$4qrKEXYdN3f1isst80Rwhea5iRv2py.zZ3wS2Ck0elkmIpM/Qpq1m', 'Rue d''Elden Ring, 150 Tarnished', 'malenia.ez@norage.com','0470065616','ROLE_ADMIN', true, true, true,true), -- Bidondon
+('CptnRam','Marton', 'Cédric', true, DEFAULT, '$2a$10$ZLXHXmROfgAFUvYINHPTKuL88pXgxL5M8NR3SOVyh07A8tQ6S2TkS', 'Rue The Finals, 5020 Champion', 'the.finals.are.back.baby@finals.steam','0470365845','ROLE_ADMIN', true, true, true,true),-- GrosBidou
+('Mov','Maque', 'Margaux', false, DEFAULT,'$2a$10$VvevVCBdx8Eq5BOTgajAtuFNs5r1qMbOSuHw1tqyORxDeb8vZOSpa', 'Rue de la médecine, 1140 Evere', 'je.disseque@cadavre.be','0468306958','ROLE_USER', true, true, true,true), -- cadavre ou Cadavre
+('Garou','Glesner', 'Marguerite',false,DEFAULT,'$2a$10$W3jo5moTQgHJ36ufJsg32uZxAi5JTfBZiQRIoa9usKIzAvU1jsoo.','Rue de la copine à Cédric, 5020 Champion', 'a.test.fortnite@pas.ouf','0465359858','ROLE_USER', true, true, true,true), -- LoveCat
+('Anywhere','Still', 'Searching', true, DEFAULT,'$2a$10$QKW7Tzr/eEufubQlZekgRu0TjYDsMDF7YeoW5w5hdayBdbGx3z9HO','Rue de l''hésisation, 404 Unknown', 'find.soon@please.be','0000000000','ROLE_USER', true, true, true,true); -- Where
 
-INSERT INTO `Order` (UserID, `Date`, isPayed) 
+INSERT INTO `Order` (Username, `Date`, isPayed) 
 VALUES 
-(1, DEFAULT, true),
-(2, DEFAULT, true),
-(3, DEFAULT, true);
+('Umdromil', DEFAULT, true),
+('SkyVeo', DEFAULT, true),
+('CptnRam', DEFAULT, true);
 
 INSERT INTO `LANGUAGE` (LanguageCode) VALUES ('EN'), ('NL'), ('DE');
 
@@ -184,7 +184,7 @@ VALUES
 ('Renovation', 'Need to help the school to finish those repair', 0.75, '2022-01-01', '2030-01-01', 'Construction'),
 ('Cedric Lunch', 'Snack time', 0.10, '2022-01-01', '2024-02-01', 'Snacks');
 
-INSERT INTO TRANSACTION_DETAILS (Quantity, TransactionPrice, ProductId, OrderId)
+INSERT INTO TRANSACTION_DETAIL (Quantity, TransactionPrice, ProductId, OrderId)
 VALUES
 (10, 8, 2, 1),
 (5, 59.96, 11, 1),
