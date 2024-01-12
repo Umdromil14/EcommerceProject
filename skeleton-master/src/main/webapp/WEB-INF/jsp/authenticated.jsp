@@ -18,13 +18,6 @@
                         <h1 class="fw-bold text-center">
                             <spring:message code="modifyTitle"/>
                         </h1>
-                        <spring:message code="usernameLabel" var="usernamePlaceholder" />
-                        <form:label path="username">
-                            ${usernamePlaceholder}<span class="text-danger">*</span>
-                        </form:label>
-                        <form:input path="username" placeholder='${usernamePlaceholder}' cssClass="form-control my-3 py-2" />
-                        <form:errors path="username" cssClass="text-danger"/>
-                        <br/>
                         <spring:message code="emailLabel" var="emailPlaceholder" />
                         <form:label path="email">
                             ${emailPlaceholder}<span class="text-danger">*</span>
