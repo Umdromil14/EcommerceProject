@@ -1,9 +1,0 @@
-server:
-  port: 8082
-  servlet:
-    contextPath: /skeleton-master
-spring:
-  datasource:
-    password: Cyr14061406
-    url : jdbc:mysql://localhost:3306/siteecommerce?user=root
-    driverClassName: com.mysql.cj.jdbc.Driver
