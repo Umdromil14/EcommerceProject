@@ -22,14 +22,13 @@ import java.util.Locale;
 @RequestMapping(value="/catalog/{category}")
 @SessionAttributes("basket")
 public class CatalogController {
-    public static final int MAX_PURCHASES = 50;
 
     @ModelAttribute("basket")
     public HashMap<Product,Integer> basket() {
-        return new HashMap<Product,Integer>();
+        return new HashMap<>();
     }
-    private ProductServices productServices;
-    private CategoryTranslationServices categoriesTranslationServices;
+    private final ProductServices productServices;
+    private final CategoryTranslationServices categoriesTranslationServices;
 
     @Autowired
     public CatalogController(ProductServices productServices, CategoryTranslationServices categoriesTranslationServices){

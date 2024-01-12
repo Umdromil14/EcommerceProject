@@ -13,7 +13,7 @@ import java.util.Locale;
 @RequestMapping(value="/home")
 public class HomeController {
 
-    private CategoryTranslationServices categoriesTranslationServices;
+    private final CategoryTranslationServices categoriesTranslationServices;
 
     @Autowired
     public HomeController(CategoryTranslationServices categoriesTranslationServices){

@@ -23,11 +23,11 @@ public class ArticleController {
 
     @ModelAttribute("basket")
     public HashMap<Product,Integer> basket() {
-        return new HashMap<Product,Integer>();
+        return new HashMap<>();
     }
 
-    private CategoryTranslationServices categoryTranslationServices;
-    private ProductServices productServices;
+    private final CategoryTranslationServices categoryTranslationServices;
+    private final ProductServices productServices;
 
     @Autowired
     public ArticleController(CategoryTranslationServices categoryTranslationServices, ProductServices productServices) {

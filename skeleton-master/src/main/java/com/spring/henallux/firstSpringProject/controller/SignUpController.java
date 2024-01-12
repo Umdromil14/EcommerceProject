@@ -16,7 +16,7 @@ import java.util.Date;
 @Controller
 @RequestMapping(value="/signup")
 public class SignUpController {
-    private UserDataAccess userDAO;
+    private final UserDataAccess userDAO;
 
     @Autowired
     public SignUpController(UserDataAccess userDAO) {

@@ -20,11 +20,11 @@ import java.util.Locale;
 @RequestMapping("/authenticated")
 public class AuthenticatedController {
 
-    private UserServices userServices;
+    private final UserServices userServices;
 
-    private CategoryTranslationServices categoriesTranslationServices;
+    private final CategoryTranslationServices categoriesTranslationServices;
 
-    private UserDataAccess userDAO;
+    private final UserDataAccess userDAO;
 
     @Autowired
     public AuthenticatedController(UserServices userServices, CategoryTranslationServices categoriesTranslationServices, UserDataAccess userDAO){
@@ -56,7 +56,7 @@ public class AuthenticatedController {
             return "integrated:authenticated";
         }
 
-        userServices.updateUser(user.getID(), form.getUsername(), form.getLastname(), form.getFirstname(), form.getAddress(), form.getEmail());
+        userServices.updateUser(user.getUsername(), form.getUsername(), form.getLastname(), form.getFirstname(), form.getAddress(), form.getEmail());
 
         if (usernameUpdated) {
             return "redirect:/logout";

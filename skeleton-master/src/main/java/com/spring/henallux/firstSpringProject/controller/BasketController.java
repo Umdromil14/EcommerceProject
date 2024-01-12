@@ -32,22 +32,16 @@ public class BasketController {
     @ModelAttribute("voucherCode")
     public String voucherCode(){return null;}
 
-    private VoucherServices voucherServices;
+    private final VoucherServices voucherServices;
 
-    private OrderServices orderServices;
+    private final OrderServices orderServices;
 
-    private TransactionDetailServices transactionDetailServices;
-
-    private ReductionServices reductionServices;
-
-    private ProductServices productServices;
+    private final ProductServices productServices;
 
     @Autowired
-    public BasketController(VoucherServices voucherServices,OrderServices orderServices, TransactionDetailServices transactionDetailServices, ReductionServices reductionServices, ProductServices productServices){
+    public BasketController(VoucherServices voucherServices, OrderServices orderServices, ProductServices productServices){
         this.voucherServices = voucherServices;
         this.orderServices = orderServices;
-        this.transactionDetailServices = transactionDetailServices;
-        this.reductionServices = reductionServices;
         this.productServices = productServices;
     }
 
@@ -124,7 +118,7 @@ public class BasketController {
         }
         else{
             session.setAttribute("voucherCode", null);
-            redirectAttributes.addFlashAttribute("wentIn", true);
+            redirectAttributes.addFlashAttribute("isNotValidVoucher", true);
         }
         return "redirect:/basket";
     }
@@ -133,30 +127,8 @@ public class BasketController {
     public String paymentSuccess(Authentication authentication, HttpSession session){
         User user = (User) authentication.getPrincipal();
         Order order = new Order(user.getID(), new Date(), true);
-        Integer orderId = orderServices.insertOrder(order);
-
-        String code = (String) session.getAttribute("voucherCode");
-        if(code != null){
-            Reduction reduction = new Reduction(orderId, code);
-            reductionServices.insertReduction(reduction);
-        }
-
-        Voucher voucher = voucherServices.findByCode(code);
         HashMap<Product, Integer> purchases = (HashMap< Product, Integer>) session.getAttribute("basket");
-        for(Map.Entry<Product, Integer> purchase: purchases.entrySet()){
-            Product product = purchase.getKey();
-            BigDecimal transactionPrice;
-            if(code != null && product.getCategory().equals(voucher.getCodeCategory())){
-                transactionPrice = product.getPrice().multiply(new BigDecimal(1).subtract(voucher.getPercentage()));
-            }
-            else {
-                transactionPrice = product.getPrice();
-            }
-            transactionPrice = transactionPrice.setScale(2, RoundingMode.CEILING);
-            TransactionDetail transaction = new TransactionDetail(purchase.getValue(), transactionPrice, product.getID(), orderId);
-            transactionDetailServices.insertTransactionDetail(transaction);
-        }
-
+        orderServices.insertOrder(order, (String) session.getAttribute("voucherCode"),(HashMap< Product, Integer>) session.getAttribute("basket"));
         purchases.clear();
         session.setAttribute("basket", purchases);
         return "integrated:successPayment";
