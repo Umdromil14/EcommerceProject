@@ -13,22 +13,21 @@ DROP TABLE IF EXISTS `voucher`;
 DROP TABLE IF EXISTS `category`;
 
 CREATE TABLE `USER` (
-    ID INT NOT NULL auto_increment,
-    Username VARCHAR(50) UNIQUE NOT NULL,
-    Lastname VARCHAR(50) ,
-    Firstname VARCHAR(50) ,
+    Username VARCHAR(50) NOT NULL,
+    Lastname VARCHAR(50),
+    Firstname VARCHAR(50),
     IsEmployee boolean NOT NULL default false,
     RegistrationDate date NOT NULL default (current_date),
     Password varchar(60) NOT NULL,
     Address varchar(255) NOT NULL,
     Email varchar(255) NOT NULL,
-    PhoneNumber varchar(20) ,
+    PhoneNumber varchar(20) NOT NULL,
     Authorities varchar(255) NOT NULL DEFAULT 'ROLE_USER',
     NonExpired bit NOT NULL default true,
     NonLocked bit NOT NULL default true,
     CredentialsNonExpired bit NOT NULL default true,
     IsEnabled bit NOT NULL default true,
-    primary key (id)
+    primary key (Username)
 ) charset = UTF8MB4, engine = InnoDB;
 
 CREATE TABLE `ORDER` (
@@ -54,9 +53,9 @@ CREATE TABLE TRANSLATION(
     ID INT NOT NULL auto_increment,
     Label VARCHAR(255) NOT NULL,
     Language VARCHAR(255) NOT NULL,
-    Category VARCHAR (255),
+    Category VARCHAR (255) NOT NULL,
     primary key (ID),
-    foreign key (Language) references LANGUAGE (LanguageCode),
+    foreign key (Language) references `LANGUAGE` (LanguageCode),
     foreign key (Category) references CATEGORY (Code)
 ) charset = UTF8MB4, engine = InnoDB;
 
@@ -64,7 +63,7 @@ CREATE TABLE PRODUCT (
     ID INT NOT NULL auto_increment,
     ActualUnitPrice decimal(6, 2) NOT NULL check(actualUnitPrice > 0.0),
     Description VARCHAR(255) NOT NULL,
-    CodeCategory VARCHAR(255),
+    CodeCategory VARCHAR(255) NOT NULL,
     Name varchar(255) NOT NULL,
     primary key (id),
     foreign key (CodeCategory) references CATEGORY (Code)
@@ -102,12 +101,12 @@ CREATE TABLE REDUCTION(
 
 INSERT INTO `USER` (Username,Lastname, Firstname, IsEmployee, RegistrationDate, Password, Address, Email,PhoneNumber, Authorities, NonExpired, NonLocked, CredentialsNonExpired,IsEnabled)
 VALUES 
-('Umdromil','Baras', 'Cyril', true, DEFAULT, '$2a$10$P8mjs2.O4m5b4Kag3RrJreaFc0TLqw9PSKR07v6/ofdwyYvZ5gnaq', 'Rue de la motte 35, 1390 Grez-Doiceau', 'satisfactory.not@finished.be' ,'0485410020','ROLE_ADMIN', true, true, true,true),
-('SkyVeo','Therasse', 'Nathan', true, DEFAULT, '$2a$10$4qrKEXYdN3f1isst80Rwhea5iRv2py.zZ3wS2Ck0elkmIpM/Qpq1m', 'Rue d''Elden Ring, 150 Tarnished', 'malenia.ez@norage.com','0470065616','ROLE_ADMIN', true, true, true,true),
-('CptnRam','Marton', 'Cédric', true, DEFAULT, '$2a$10$ZLXHXmROfgAFUvYINHPTKuL88pXgxL5M8NR3SOVyh07A8tQ6S2TkS', 'Rue The Finals, 5020 Champion', 'the.finals.are.back.baby@finals.steam','0470365845','ROLE_ADMIN', true, true, true,true),
-('Mov','Maque', 'Margaux', false, DEFAULT,'$2a$10$VvevVCBdx8Eq5BOTgajAtuFNs5r1qMbOSuHw1tqyORxDeb8vZOSpa', 'Rue de la médecine, 1140 Evere', 'je.disseque@cadavre.be','0468306958','ROLE_USER', true, true, true,true),
-('Garou','Glesner', 'Marguerite',false,DEFAULT,'$2a$10$W3jo5moTQgHJ36ufJsg32uZxAi5JTfBZiQRIoa9usKIzAvU1jsoo.','Rue de la copine à Cédric, 5020 Champion', 'a.test.fortnite@pas.ouf','0465359858','ROLE_USER', true, true, true,true),
-('Anywhere','Still', 'Searching', true, DEFAULT,'$2a$10$QKW7Tzr/eEufubQlZekgRu0TjYDsMDF7YeoW5w5hdayBdbGx3z9HO','Rue de l''hésisation, 404 Unknown', 'find.soon@please.be',NULL,'ROLE_USER', true, true, true,true);
+('Umdromil','Baras', 'Cyril', true, DEFAULT, '$2a$10$P8mjs2.O4m5b4Kag3RrJreaFc0TLqw9PSKR07v6/ofdwyYvZ5gnaq', 'Rue de la motte 35, 1390 Grez-Doiceau', 'satisfactory.not@finished.be' ,'0485410020','ROLE_ADMIN', true, true, true,true), --Password
+('SkyVeo','Therasse', 'Nathan', true, DEFAULT, '$2a$10$4qrKEXYdN3f1isst80Rwhea5iRv2py.zZ3wS2Ck0elkmIpM/Qpq1m', 'Rue d''Elden Ring, 150 Tarnished', 'malenia.ez@norage.com','0470065616','ROLE_ADMIN', true, true, true,true),--Bidondon
+('CptnRam','Marton', 'Cédric', true, DEFAULT, '$2a$10$ZLXHXmROfgAFUvYINHPTKuL88pXgxL5M8NR3SOVyh07A8tQ6S2TkS', 'Rue The Finals, 5020 Champion', 'the.finals.are.back.baby@finals.steam','0470365845','ROLE_ADMIN', true, true, true,true),--GrosBidou
+('Mov','Maque', 'Margaux', false, DEFAULT,'$2a$10$VvevVCBdx8Eq5BOTgajAtuFNs5r1qMbOSuHw1tqyORxDeb8vZOSpa', 'Rue de la médecine, 1140 Evere', 'je.disseque@cadavre.be','0468306958','ROLE_USER', true, true, true,true),--cadavre ou Cadavre
+('Garou','Glesner', 'Marguerite',false,DEFAULT,'$2a$10$W3jo5moTQgHJ36ufJsg32uZxAi5JTfBZiQRIoa9usKIzAvU1jsoo.','Rue de la copine à Cédric, 5020 Champion', 'a.test.fortnite@pas.ouf','0465359858','ROLE_USER', true, true, true,true),--LoveCat
+('Anywhere','Still', 'Searching', true, DEFAULT,'$2a$10$QKW7Tzr/eEufubQlZekgRu0TjYDsMDF7YeoW5w5hdayBdbGx3z9HO','Rue de l''hésisation, 404 Unknown', 'find.soon@please.be','0000000000','ROLE_USER', true, true, true,true);--Where
 
 INSERT INTO `Order` (UserID, `Date`, isPayed) 
 VALUES 
