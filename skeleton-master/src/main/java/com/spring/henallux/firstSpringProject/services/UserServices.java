@@ -22,7 +22,7 @@ public class UserServices {
 //    public void updateUser(int id, String username, String lastname, String firstname, String address, String email){
 //        userDAO.updateUser(id, username, lastname, firstname, address, email);
 //    }
-    public void updateUser(String oldUsername,String username, String lastname, String firstname, String address, String email){
-        userDAO.updateUser(oldUsername,username, lastname, firstname, address, email);
+    public void updateUser(String username, String lastname, String firstname, String address, String email){
+        userDAO.updateUser(username, lastname, firstname, address, email);
     }
 }

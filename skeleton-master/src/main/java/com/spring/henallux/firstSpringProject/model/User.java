@@ -14,9 +14,6 @@ import java.util.List;
 import java.util.Date;
 
 public class User implements UserDetails {
-    private Integer ID;
-
-    @NotNull
     @Size(min = 1, max = 50)
     private String username;
 
@@ -57,8 +54,7 @@ public class User implements UserDetails {
     @Size(min = 1, max = 60)
     private String confirmPassword;
 
-    public User(Integer ID, String username, String lastname, String firstname, boolean isEmployee, Date registrationDate, String password, String address, String email, String phoneNumber, String authorities, boolean nonExpired, boolean nonLocked, boolean credentialsNonExpired, boolean isEnabled, String confirmPassword) {
-        setID(ID);
+    public User(String username, String lastname, String firstname, boolean isEmployee, Date registrationDate, String password, String address, String email, String phoneNumber, String authorities, boolean nonExpired, boolean nonLocked, boolean credentialsNonExpired, boolean isEnabled, String confirmPassword) {
         setUsername(username);
         setLastname(lastname);
         setFirstname(firstname);
@@ -77,10 +73,6 @@ public class User implements UserDetails {
     }
 
     public User () { }
-
-    public Integer getID() {
-        return ID;
-    }
 
     @Override
     public String getUsername() {
@@ -165,10 +157,6 @@ public class User implements UserDetails {
         return confirmPassword;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -188,7 +176,6 @@ public class User implements UserDetails {
     public void setIsEmployee(boolean isEmployee) {
         this.isEmployee = isEmployee;
     }
-//eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }

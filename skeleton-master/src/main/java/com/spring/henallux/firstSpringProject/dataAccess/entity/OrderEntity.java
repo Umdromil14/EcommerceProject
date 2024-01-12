@@ -13,8 +13,8 @@ public class OrderEntity {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer ID;
 
-    @Column(name="userid")
-    private Integer userId;
+    @Column(name="username")
+    private String username;
 
     @Column(name="date")
     private Date date;
@@ -30,8 +30,8 @@ public class OrderEntity {
         return ID;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
     public Date getDate() {
@@ -48,8 +48,8 @@ public class OrderEntity {
         this.ID = ID;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setDate(Date date) {

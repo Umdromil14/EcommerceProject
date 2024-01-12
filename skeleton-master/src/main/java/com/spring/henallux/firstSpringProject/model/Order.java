@@ -4,20 +4,20 @@ import java.util.Date;
 
 public class Order {
 
-    private Integer userId;
+    private String username;
     
     private Date date;
     
     private Boolean isPayed;
     
-    public Order(Integer userId, Date date, Boolean isPayed){
-        this.userId = userId;
+    public Order(String username, Date date, Boolean isPayed){
+        this.username = username;
         this.date = date;
         this.isPayed = isPayed;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
     public Date getDate() {
@@ -28,8 +28,8 @@ public class Order {
         return isPayed;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setDate(Date date) {

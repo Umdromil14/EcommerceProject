@@ -45,22 +45,14 @@ public class AuthenticatedController {
     public String getNewUserDetails(Model model, Authentication authentication, @Valid @ModelAttribute(value="user") User form,
                                     final BindingResult errors){
         User user = (User) authentication.getPrincipal();
-
-        boolean usernameUpdated = !user.getUsername().equals(form.getUsername());
-
-        if (usernameUpdated && userDAO.usernameExists(form.getUsername())) {
-            model.addAttribute("usernameExists", true);
-            return "integrated:authenticated";
-        }
         if (errors.hasErrors()) {
+            System.out.println(form.getLastname());
             return "integrated:authenticated";
         }
+        System.out.println(user.getLastname());
 
-        userServices.updateUser(user.getUsername(), form.getUsername(), form.getLastname(), form.getFirstname(), form.getAddress(), form.getEmail());
+        userServices.updateUser(user.getUsername(), form.getLastname(), form.getFirstname(), form.getAddress(), form.getEmail());
 
-        if (usernameUpdated) {
-            return "redirect:/logout";
-        }
         return "redirect:/home";
     }
 }

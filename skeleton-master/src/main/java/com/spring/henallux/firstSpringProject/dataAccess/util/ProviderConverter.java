@@ -42,7 +42,6 @@ public class ProviderConverter {
 
     public User userEntityToUserModel(UserEntity userEntity){
         User user = mapper.map(userEntity, User.class);
-        user.setID(userEntity.getId());
         user.setNonExpired(userEntity.getNonExpired());
         user.setNonLocked(userEntity.getNonLocked());
         user.setCredentialsNonExpired(userEntity.getCredentialsNonExpired());

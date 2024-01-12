@@ -9,10 +9,6 @@ public class UserEntity {
 
     //region variables
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
-
     @Column(name="username")
     private String username;
 
@@ -60,8 +56,7 @@ public class UserEntity {
     //endregion
 
 
-    public UserEntity(Integer id, String username, String lastname, String firstname, boolean isEmployee, Date registrationDate, String password, String address, String email, String phoneNumber, String authorities, boolean nonExpired, boolean nonLocked, boolean credentialsNonExpired, boolean isEnabled, String confirmPassword) {
-        this.id = id;
+    public UserEntity(String username, String lastname, String firstname, boolean isEmployee, Date registrationDate, String password, String address, String email, String phoneNumber, String authorities, boolean nonExpired, boolean nonLocked, boolean credentialsNonExpired, boolean isEnabled, String confirmPassword) {
         this.username = username;
         this.lastname = lastname;
         this.firstname = firstname;
@@ -83,10 +78,6 @@ public class UserEntity {
     }
 
     //region getters
-    public Integer getId(){
-        return id;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -149,11 +140,6 @@ public class UserEntity {
     //endregion
 
     //region setters
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }

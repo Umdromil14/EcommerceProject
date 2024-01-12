@@ -126,7 +126,7 @@ public class BasketController {
     @RequestMapping(value="/success", method = RequestMethod.GET)
     public String paymentSuccess(Authentication authentication, HttpSession session){
         User user = (User) authentication.getPrincipal();
-        Order order = new Order(user.getID(), new Date(), true);
+        Order order = new Order(user.getUsername(), new Date(), true);
         HashMap<Product, Integer> purchases = (HashMap< Product, Integer>) session.getAttribute("basket");
         orderServices.insertOrder(order, (String) session.getAttribute("voucherCode"),(HashMap< Product, Integer>) session.getAttribute("basket"));
         purchases.clear();

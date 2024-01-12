@@ -35,8 +35,8 @@ public class UserDAO implements UserDataAccess{
     }
 
     @Override
-    public void updateUser(String oldUsername, String username, String lastname, String firstname, String address, String email) {
-        userRepository.updateUser(oldUsername, username, lastname, firstname, address, email);
+    public void updateUser(String username, String lastname, String firstname, String address, String email) {
+        userRepository.updateUser(username, lastname, firstname, address, email);
     }
 
     @Override
