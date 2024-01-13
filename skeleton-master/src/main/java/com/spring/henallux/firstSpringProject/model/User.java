@@ -158,18 +158,18 @@ public class User implements UserDetails {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.trim();
     }
 
     public void setLastname(String lastname) {
         if (!lastname.isEmpty()) {
-            this.lastname = lastname;
+            this.lastname = lastname.trim();
         }
     }
 
     public void setFirstname(String firstname) {
         if (!firstname.isEmpty()) {
-            this.firstname = firstname;
+            this.firstname = firstname.trim();
         }
     }
 
@@ -181,19 +181,19 @@ public class User implements UserDetails {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password.trim();
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address.trim();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.trim();
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber.trim();
     }
 
     public void setAuthorities(String authorities) {
@@ -217,7 +217,7 @@ public class User implements UserDetails {
     }
 
     public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+        this.confirmPassword = confirmPassword.trim();
     }
 
     public void setUserDefaultValues() {

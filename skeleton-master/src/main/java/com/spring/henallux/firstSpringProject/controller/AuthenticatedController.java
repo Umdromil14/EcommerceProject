@@ -24,13 +24,10 @@ public class AuthenticatedController {
 
     private final CategoryTranslationServices categoriesTranslationServices;
 
-    private final UserDataAccess userDAO;
-
     @Autowired
     public AuthenticatedController(UserServices userServices, CategoryTranslationServices categoriesTranslationServices, UserDataAccess userDAO){
         this.userServices = userServices;
         this.categoriesTranslationServices = categoriesTranslationServices;
-        this.userDAO = userDAO;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -46,10 +43,8 @@ public class AuthenticatedController {
                                     final BindingResult errors){
         User user = (User) authentication.getPrincipal();
         if (errors.hasErrors()) {
-            System.out.println(form.getLastname());
             return "integrated:authenticated";
         }
-        System.out.println(user.getLastname());
 
         userServices.updateUser(user.getUsername(), form.getLastname(), form.getFirstname(), form.getAddress(), form.getEmail());
 
